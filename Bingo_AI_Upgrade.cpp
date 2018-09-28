@@ -56,19 +56,19 @@ int main()
 
 	int Bingo = 0, AIBingo = 0;
 	int AiMode;
-	// AI ³­ÀÌµµ¸¦ ¼±ÅÃÇÑ´Ù.
+	// AI ë‚œì´ë„ë¥¼ ì„ íƒí•œë‹¤.
 	while (true)
 	{
-		cout << "****** 5ÁÙ ºù°í½Ã ½Â¸® ******" << endl;
+		cout << "****** 5ì¤„ ë¹™ê³ ì‹œ ìŠ¹ë¦¬ ******" << endl;
 		cout << "1. Easy" << endl;
 		cout << "2. Hard" << endl;
-		cout << "AI ¸ğµå¸¦ ¼±ÅÃÇÏ¼¼¿ä. : ";
+		cout << "AI ëª¨ë“œë¥¼ ì„ íƒí•˜ì„¸ìš”. : ";
 		
 		cin >> AiMode;
 		if (AiMode < AM_EASY || AiMode > AM_HARD)
 		{
 			system("cls");
-			cout << "³­ÀÌµµ¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù." << endl;
+			cout << "ë‚œì´ë„ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤." << endl;
 			continue;
 		}
 		else
@@ -129,26 +129,38 @@ int main()
 			cout << endl;
 		}
 
-		if (Bingo >= 5 && AIBingo >= 5)
+		/*if (Bingo >= 5 && AIBingo >= 5)
 		{
-			cout << "ºñ±è" << endl;
+			cout << "ë¹„ê¹€" << endl;
 			break;
-		}
-		else if (Bingo >= 5)
+		}*/
+		if (Bingo >= 5)
 		{
-			cout << "Player ½Â¸®" << endl;
+			if (Bingo == AIBingo)
+			{
+				cout << "ë¹„ê¹€" << endl;
+			}
+			else if (Bingo >= AIBingo)
+			{
+				cout << "Player ìŠ¹ë¦¬" << endl;
+			}
+			else if (AIBingo >= Bingo)
+			{
+				cout << "AI ìŠ¹ë¦¬" << endl;
+			}
+			
 			break;
 		}
 		else if (AIBingo >= 5)
 		{
-			cout << "AI ½Â¸®" << endl;
+			cout << "AI ìŠ¹ë¦¬" << endl;
 			break;
 		}
 		
 
-		//ÀÔ·Â
+		//ì…ë ¥
 		int Input = 0;
-		cout << "\n\n\n\n" << "¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä. (0 : Á¾·á) : ";
+		cout << "\n\n\n\n" << "ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”. (0 : ì¢…ë£Œ) : ";
 		cin >> Input;
 		if (Input == 0)
 		{
@@ -172,7 +184,7 @@ int main()
 				}
 			}
 
-			// ºù°í UP
+			// ë¹™ê³  UP
 			Bingo = 0;
 			AIBingo = 0;
 			int AIcheck1 = 0, AIcheck2 = 0, AIcheck3 = 0, AIcheck4 = 0;
@@ -267,7 +279,7 @@ int main()
 				case AM_EASY:
 					for (int i = 0; i < 25; i++)
 					{
-						// *ÀÌ ¾Æ´Ò°æ¿ì
+						// *ì´ ì•„ë‹ê²½ìš°
 						if (AINumber[i] != INT_MAX)
 						{
 							NoneSelect[NoneSelectCount] = AINumber[i];
@@ -278,13 +290,13 @@ int main()
 					Input = NoneSelect[rand() % NoneSelectCount];
 					break;
 				case AM_HARD:
-					// ºù°íÁÙ ¿Ï¼º °¡´É¼ºÀÌ °¡Àå ³ôÀº ÁÙÀ» Ã£¾Æ¼­ ±× ÁÙ¿¡ÀÖ´Â
-					// ¼ıÀÚ¸¦ *·Î ¸¸µå´Â ¾Ë°í¸®Áò
+					// ë¹™ê³ ì¤„ ì™„ì„± ê°€ëŠ¥ì„±ì´ ê°€ì¥ ë†’ì€ ì¤„ì„ ì°¾ì•„ì„œ ê·¸ ì¤„ì—ìˆëŠ”
+					// ìˆ«ìë¥¼ *ë¡œ ë§Œë“œëŠ” ì•Œê³ ë¦¬ì¦˜
 					int Line;
 					int CheckCount;
 					int SaveCount = 0;
 
-					// °¡·Î ¶óÀÎÁß °¡Àå*ÀÌ ¸¹Àº °ÍÀ» Ã£´Â´Ù.
+					// ê°€ë¡œ ë¼ì¸ì¤‘ ê°€ì¥*ì´ ë§ì€ ê²ƒì„ ì°¾ëŠ”ë‹¤.
 					for (int i = 0; i < 5; i++)
 					{
 						for (int j = 0; j < 5; j++)
@@ -294,9 +306,9 @@ int main()
 								CheckCount++;
 							}
 						}
-						// º°ÀÌ 5°³ ¹Ì¸¸
-						// ±âÁ¸¿¡ °¡Àå ¸¹Àº ¶óÀÎÀÇ º°º¸´Ù Ä¿¾ß °¡Àå º°ÀÌ
-						// ¸¹Àº ¶óÀÎÀÌ¹Ç·Î ¶óÀÎÀ» ±³Ã¼ÇØÁÖ°í º°¼ö¸¦ ±³Ã¼
+						// ë³„ì´ 5ê°œ ë¯¸ë§Œ
+						// ê¸°ì¡´ì— ê°€ì¥ ë§ì€ ë¼ì¸ì˜ ë³„ë³´ë‹¤ ì»¤ì•¼ ê°€ì¥ ë³„ì´
+						// ë§ì€ ë¼ì¸ì´ë¯€ë¡œ ë¼ì¸ì„ êµì²´í•´ì£¼ê³  ë³„ìˆ˜ë¥¼ êµì²´
 						if (CheckCount < 5 && SaveCount < CheckCount)
 						{
 							Line = i;
@@ -412,13 +424,13 @@ int main()
 				}
 			}
 			system("cls");
-			cout << "Ai°¡ ÀÔ·ÂÇÑ¼ö : " << Input << endl;
+			cout << "Aiê°€ ì…ë ¥í•œìˆ˜ : " << Input << endl;
 			continue;
 		}
 		else if (Input > 25)
 		{
 			system("cls");
-			cout << "³Ê¹« Å«¼ö¸¦ ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù." << endl;
+			cout << "ë„ˆë¬´ í°ìˆ˜ë¥¼ ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤." << endl;
 			continue;
 		}
 
